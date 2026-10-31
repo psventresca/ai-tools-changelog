@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>AI Tools Changelog</title>
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="icon" href="icon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#221E67">
+<meta name="apple-mobile-web-app-title" content="Changelog">
+<style>
+  :root { --navy: #221E67; --blue: #8CA2D3; --bg: #F7F5F0; --card: #fff; --ink: #1d1b2e; --muted: #6b6a7a;
+          --line: #e4e1d8; --warn: #9a5b00; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); overflow-wrap: anywhere;
+         font: 15px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, sans-serif; }
+  .brand { display: flex; gap: 12px; align-items: center; margin-bottom: 4px; }
+  .brand img { width: 40px; height: 40px; flex: none; }
+  .brand h1 { margin: 0; }
+  main { max-width: 980px; margin: 0 auto; padding: 24px 16px 64px; }
+  h1 { color: var(--navy); font-size: 28px; margin: 0 0 4px; }
+  h2 { color: var(--navy); font-size: 18px; margin: 32px 0 10px; }
+  .muted { color: var(--muted); font-size: 13px; }
+  #lock { max-width: 360px; margin: 18vh auto 0; background: var(--card); border: 1px solid var(--line);
+          border-radius: 12px; padding: 24px; }
+  #lock h1 { font-size: 22px; }
+  #lock input[type=password] { width: 100%; padding: 10px 12px; font-size: 16px; border: 1px solid var(--line);
+          border-radius: 8px; margin: 14px 0 10px; }
+  #lock label { display: flex; gap: 8px; align-items: center; font-size: 14px; }
+  button { background: var(--navy); color: #fff; border: 0; border-radius: 8px; padding: 10px 16px;
+           font-size: 15px; cursor: pointer; margin-top: 14px; width: 100%; }
+  #msg { color: #b00020; font-size: 14px; min-height: 20px; margin-top: 8px; }
+  .wrap { overflow-x: auto; background: var(--card); border: 1px solid var(--line); border-radius: 10px; }
+  table { border-collapse: collapse; width: 100%; font-size: 14px; }
+  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { color: var(--navy); font-weight: 600; background: #efedf6; white-space: nowrap; }
+  tr:last-child td { border-bottom: 0; }
+  td.num { white-space: nowrap; text-align: right; }
+  .warn { color: var(--warn); }
+  .tools { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0 4px; }
+  .tools input, .tools select { padding: 8px 10px; font-size: 15px; border: 1px solid var(--line);
+          border-radius: 8px; background: var(--card); color: var(--ink); }
+  .tools input { flex: 1 1 220px; }
+  .day { color: var(--navy); font-weight: 600; margin: 22px 0 6px; padding-bottom: 4px;
+         border-bottom: 2px solid var(--blue); }
+  .change { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 8px 12px;
+            margin: 6px 0; }
+  .head { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; }
+  .time { color: var(--muted); font-size: 13px; min-width: 62px; }
+  .app { background: var(--navy); color: #fff; border-radius: 999px; padding: 1px 9px; font-size: 12px;
+         white-space: nowrap; }
+  .title { flex: 1 1 300px; }
+  .commit { color: var(--muted); font: 12px ui-monospace, Consolas, monospace; }
+  details { margin-top: 4px; }
+  summary { color: var(--navy); cursor: pointer; font-size: 13px; }
+  pre { white-space: pre-wrap; font-family: inherit; font-size: 13px; line-height: 1.45; margin: 6px 0 2px;
+        color: var(--ink); }
+  #more { width: auto; background: var(--card); color: var(--navy); border: 1px solid var(--navy); }
+  .linkish { background: none; color: var(--muted); width: auto; padding: 0; margin: 0; font: inherit;
+             text-decoration: underline; }
+  td .label { display: none; }
+
+  /* Phones: each app is its own card, nothing wider than the screen. */
+  @media (max-width: 640px) {
+    main { padding: 16px 16px 48px; }
+    h1 { font-size: 24px; }
+    .wrap { background: none; border: 0; overflow: visible; }
+    table, tbody, tr, td { display: block; }
+    thead { display: none; }
+    tr { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px;
+         margin: 8px 0; }
+    td { border: 0; padding: 2px 0; }
+    td.num { text-align: left; white-space: normal; }
+    td .label { display: inline; color: var(--muted); }
+    td.unc.none { display: none; }
+    .head { gap: 4px 8px; }
+    .time { min-width: 0; }
+    .title { flex-basis: 100%; }
+    .tools select { flex: 1 1 100%; }
+  }
+</style>
+</head>
+<body>
+<div id="lock">
+  <div class="brand"><img src="icon.svg" alt=""><h1>AI Tools changelog</h1></div>
+  <div class="muted">Private page. Enter the password.</div>
+  <input id="pw" type="password" autocomplete="current-password" aria-label="Password">
+  <label><input id="remember" type="checkbox"> Remember on this device</label>
+  <button id="open">Open</button>
+  <div id="msg"></div>
+</div>
+<main id="app" hidden>
+  <div class="brand"><img src="icon.svg" alt=""><h1>AI Tools changelog</h1></div>
+  <div class="muted">What changed in each app, and when, from each app's git history. Updated
+    <span id="built"></span>. Settings in .env files, the creds file and Task Scheduler changes aren't in git,
+    so they aren't here. <button class="linkish" id="refresh">Check for updates</button> ·
+    <button class="linkish" id="forget">Forget this device</button></div>
+
+  <h2>Apps at a glance</h2>
+  <div class="wrap"><table>
+    <thead><tr><th>App</th><th>Last change</th><th>7 / 30 days</th><th>Not committed yet</th></tr></thead>
+    <tbody id="apps"></tbody>
+  </table></div>
+
+  <h2>Every change</h2>
+  <div class="tools">
+    <input id="q" type="search" placeholder="Search changes" aria-label="Search changes">
+    <select id="which" aria-label="App"><option value="">All apps</option></select>
+  </div>
+  <div class="muted" id="count"></div>
+  <div id="list"></div>
+  <button id="more" hidden>Show more</button>
+</main>
+<script>
+const SALT = Uint8Array.from(atob("7CeEl8BpDbTdnZ1Nlp9+oQ=="), c => c.charCodeAt(0));
+const ITERATIONS = 600000;
+const STORE = "ai-tools-changelog-key-7CeEl8BpDbTdnZ1Nlp9+oQ==";
+const $ = id => document.getElementById(id);
+const store = {
+  get() { try { return localStorage.getItem(STORE); } catch { return null; } },
+  set(v) { try { localStorage.setItem(STORE, v); } catch {} },
+  clear() { try { localStorage.removeItem(STORE); } catch {} },
+};
+
+async function deriveKey(password) {
+  const base = await crypto.subtle.importKey("raw", new TextEncoder().encode(password), "PBKDF2", false, ["deriveKey"]);
+  return crypto.subtle.deriveKey({ name: "PBKDF2", salt: SALT, iterations: ITERATIONS, hash: "SHA-256" },
+                                 base, { name: "AES-GCM", length: 256 }, true, ["decrypt"]);
+}
+
+let blob = null, KEY = null, checked = 0;
+async function load() {
+  // A new address every time: GitHub's CDN would otherwise answer with its copy for up to 10 minutes.
+  const r = await fetch(`data.bin?t=${Date.now()}`, { cache: "no-store" });
+  if (!r.ok) throw new Error(`data.bin: ${r.status}`);
+  blob = new Uint8Array(await r.arrayBuffer());
+  checked = Date.now();
+}
+
+async function decrypt(key) {
+  if (!blob) await load();
+  const plain = await crypto.subtle.decrypt({ name: "AES-GCM", iv: blob.slice(0, 12) }, key, blob.slice(12));
+  return JSON.parse(new TextDecoder().decode(plain));
+}
+
+function el(tag, cls, text) {
+  const e = document.createElement(tag);
+  if (cls) e.className = cls;
+  if (text !== undefined && text !== null) e.textContent = text;
+  return e;
+}
+
+let DATA, shown = 200;
+function start(key, data) {
+  KEY = key;
+  $("lock").hidden = true;
+  $("app").hidden = false;
+  $("q").addEventListener("input", () => { shown = 200; render(); });
+  $("which").addEventListener("change", () => { shown = 200; render(); });
+  $("more").addEventListener("click", () => { shown += 300; render(); });
+  show(data);
+}
+
+function show(data) {
+  DATA = data;
+  $("built").textContent = data.built;
+  const tbody = $("apps"), which = $("which"), picked = which.value;
+  tbody.replaceChildren();
+  which.replaceChildren(new Option("All apps", ""));
+  for (const a of data.apps) {
+    const tr = el("tr");
+    const name = el("td");
+    name.append(el("strong", "", a.app), el("div", "muted", a.area));
+    const last = el("td");
+    last.append(el("div", "", a.last_change || "never"), el("div", "muted", a.last_title || ""));
+    const n = el("td", "num");
+    n.append(el("span", "label", "Changes, last 7 / 30 days: "), `${a.changes_7d} / ${a.changes_30d}`);
+    const files = a.uncommitted || [];
+    const unc = el("td", files.length ? "unc warn" : "unc none muted");
+    unc.append(el("span", "label", "Not committed yet: "),
+               files.length ? `${files.length}: ${files.slice(0, 4).join(", ")}${files.length > 4 ? " …" : ""}` : "—");
+    tr.append(name, last, n, unc);
+    tbody.append(tr);
+    which.append(new Option(a.app, a.app));
+  }
+  which.value = picked;
+  if (which.value !== picked) which.value = "";
+  render();
+}
+
+// Opened from the iPhone home screen, the page comes back as it was left, without
+// reloading; so look for a newer build whenever it's shown again.
+async function refresh(asked) {
+  if (!KEY || (!asked && Date.now() - checked < 60000)) return;
+  try {
+    await load();
+    const data = await decrypt(KEY);
+    if (data.built !== DATA.built) show(data);
+    if (asked) $("refresh").textContent = `Checked ${new Date().toLocaleTimeString([], { hour: "numeric", minute: "2-digit" })}`;
+  } catch {
+    if (asked) $("refresh").textContent = "Couldn't check, try again";
+  }
+}
+
+function render() {
+  const q = $("q").value.trim().toLowerCase(), which = $("which").value;
+  const rows = DATA.changes.filter(c => (!which || c.app === which)
+    && (!q || `${c.app} ${c.title} ${c.details} ${c.commit} ${c.day}`.toLowerCase().includes(q)));
+  $("count").textContent = `${rows.length} change${rows.length === 1 ? "" : "s"}`;
+  const list = $("list");
+  list.replaceChildren();
+  let day = null;
+  for (const c of rows.slice(0, shown)) {
+    if (c.day !== day) { day = c.day; list.append(el("div", "day", day)); }
+    const box = el("div", "change");
+    const head = el("div", "head");
+    head.append(el("span", "time", c.time), el("span", "app", c.app), el("span", "title", c.title),
+                el("span", "commit", c.commit));
+    box.append(head);
+    if (c.details) {
+      const d = el("details");
+      d.append(el("summary", "", "Details"), el("pre", "", c.details));
+      box.append(d);
+    }
+    list.append(box);
+  }
+  $("more").hidden = rows.length <= shown;
+}
+
+async function open() {
+  $("msg").textContent = "Opening …";
+  try {
+    const key = await deriveKey($("pw").value);
+    let data;
+    try { data = await decrypt(key); }
+    catch { $("msg").textContent = "That password didn't work."; return; }
+    if ($("remember").checked) {
+      const raw = new Uint8Array(await crypto.subtle.exportKey("raw", key));
+      store.set(btoa(String.fromCharCode(...raw)));
+    }
+    start(key, data);
+  } catch (e) {
+    $("msg").textContent = "Couldn't open the page: " + e.message;
+  }
+}
+
+$("open").addEventListener("click", open);
+$("pw").addEventListener("keydown", e => { if (e.key === "Enter") open(); });
+$("forget").addEventListener("click", () => { store.clear(); location.reload(); });
+$("refresh").addEventListener("click", () => refresh(true));
+document.addEventListener("visibilitychange", () => { if (!document.hidden) refresh(false); });
+window.addEventListener("pageshow", e => { if (e.persisted) refresh(false); });
+
+(async () => {
+  const saved = store.get();
+  if (!saved) return;
+  try {
+    const key = await crypto.subtle.importKey("raw", Uint8Array.from(atob(saved), c => c.charCodeAt(0)),
+                                              "AES-GCM", false, ["decrypt"]);
+    start(key, await decrypt(key));
+  } catch {
+    store.clear();  // the password changed since it was remembered
+  }
+})();
+</script>
+</body>
+</html>
