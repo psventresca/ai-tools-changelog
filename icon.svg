@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- AI Tools changelog: a timeline of changes (newest in gold) with a sparkle. Team navy #221E67, secondary #8CA2D3. -->
+  <rect width="512" height="512" rx="112" fill="#221E67"/>
+  <line x1="150" y1="150" x2="150" y2="362" stroke="#8CA2D3" stroke-width="22" stroke-linecap="round"/>
+  <rect x="214" y="135" width="128" height="30" rx="15" fill="#8CA2D3"/>
+  <rect x="214" y="241" width="176" height="30" rx="15" fill="#8CA2D3" opacity="0.8"/>
+  <rect x="214" y="347" width="148" height="30" rx="15" fill="#8CA2D3" opacity="0.6"/>
+  <circle cx="150" cy="150" r="38" fill="#FFC94D"/>
+  <circle cx="150" cy="256" r="32" fill="#FFFFFF"/>
+  <circle cx="150" cy="362" r="32" fill="#FFFFFF"/>
+  <path d="M410 64 Q410 112 458 112 Q410 112 410 160 Q410 112 362 112 Q410 112 410 64 Z" fill="#FFC94D"/>
+  <path d="M440 176 Q440 196 460 196 Q440 196 440 216 Q440 196 420 196 Q440 196 440 176 Z" fill="#FFFFFF"/>
+</svg>
